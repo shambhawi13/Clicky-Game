@@ -1,13 +1,19 @@
-function ImageRandomizer(){
-    var listOfImages =[];
-    listOfImages = importAll(require.context('../Assets/', false, /\.(png|jpe?g|svg)$/));
-    console.log(listOfImages);
-    return listOfImages;
+class ImageUtil{
+    listOfImages = [];
+    getImage() {
+        this.listOfImages = this.importAll(require.context('../Assets/', false, /\.(png|jpe?g|svg)$/));
+        return this.listOfImages;
+    }
+    ImageRandomizer() {
+        let randomChoice = Math.floor(Math.random() * this.listOfImages.length);
+        return randomChoice;
+    }
+    importAll(r) {
+        return r.keys().map(r);
+    }
+    
+
 }
 
- function importAll(r) {
-    return r.keys().map(r);
-}
-
-
-export default ImageRandomizer;
+let imageUtil = new ImageUtil()
+export default imageUtil;

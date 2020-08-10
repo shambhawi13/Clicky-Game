@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Jumbotron from "./pages/jumbotron/jumbotron";
 import Header from './pages/header/header';
 import CardsContainer from './pages/CardsContainer/CardsContainer';
-import ImageRandomizer from '../Util/ImageRandomizer';
+import imageUtil from '../Util/ImageRandomizer';
 
 class PageContainer extends Component{
     state={
@@ -10,7 +10,7 @@ class PageContainer extends Component{
     };
 
     componentDidMount(){
-      ImageRandomizer();
+      //console.log(imageUtil.getImage());
     }
 
     render() {
@@ -18,7 +18,7 @@ class PageContainer extends Component{
           <div>
             <Header></Header>
             <Jumbotron></Jumbotron>
-            <CardsContainer images={ImageRandomizer()}></CardsContainer>          
+            <CardsContainer images={imageUtil.getImage()}></CardsContainer>          
           </div>
         );
       }
