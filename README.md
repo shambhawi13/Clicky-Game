@@ -37,7 +37,7 @@ Here is how the application works:
 ## Review URL
 
 [GitHub](https://github.com/shambhawi13/Clicky-Game) | 
-[Live]()
+[Live](https://shambhawi13.github.io/Clicky-Game/)
 
 
 
