@@ -13,10 +13,8 @@ class PageContainer extends Component{
 
     setScore = (value)=>{
       //call method and set flag corresponding to image as true
-      console.log(value);
       for(let i of imageUtil.imageClickedTracker){
         if(Object.keys(i)[0] === value){
-          console.log("yes equal ",value);
           if(!i[value]){
             i[value] = true;
             let newScore = this.state.score + 1;
@@ -25,7 +23,9 @@ class PageContainer extends Component{
           else{
             let calcTopScore = Math.max(this.state.topScore,this.state.score);
             this.setState({topScore: calcTopScore});
-            this.setState({score: 0})
+            this.setState({score: 0});
+            imageUtil.resetImageClickTracker();
+            //this.setState({images:imageUtil.getImage()});
           }
         }
       }

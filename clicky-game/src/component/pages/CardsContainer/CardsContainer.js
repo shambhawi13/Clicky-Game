@@ -7,7 +7,7 @@ function CardsContainer(props) {
             <div className="row">
                 {
                     props.images.map(
-                        (image, index) => <Cards image={image} name={index} setScore={props.setScore} shuffleImages={props.shuffleImages}></Cards>
+                        (image, index) => <Cards image={image} key={index} name={index} setScore={props.setScore} shuffleImages={props.shuffleImages}></Cards>
                     )
                 }
             </div>

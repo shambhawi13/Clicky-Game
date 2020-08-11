@@ -4,19 +4,27 @@ class ImageUtil{
     getImage() {
         this.listOfImages = this.importAll(require.context('../Assets/', false, /\.(png|jpe?g|svg)$/));
         //console.log(this.imageClickedTracker);
+        for(let i of this.listOfImages){
+            let imageTrack = {};
+            imageTrack[i] = false;
+            this.imageClickedTracker.push(imageTrack);
+        }
         return this.listOfImages;
+    }
+
+    resetImageClickTracker(){
+        this.imageClickedTracker = [];
+        for(let i of this.listOfImages){
+            let imageTrack = {};
+            imageTrack[i] = false;
+            this.imageClickedTracker.push(imageTrack);
+        }
     }
     getImagesNames = () => {
         const r = require.context('../Assets/', false, /\.(png|jpe?g|svg)$/);      
         // return an array list of filenames (with extension)
         const importAll = (r) => r.keys().map(file => file.match(/[^\/]+$/)[0]);
         console.log(importAll(r));
-        for(let i of importAll(r)){
-            let imageTrack = {};
-            imageTrack[i] = false;
-            this.imageClickedTracker.push(imageTrack);
-        }
-        console.log(this.imageClickedTracker);
         return importAll(r);
       };
     ImageRandomizer() {
@@ -41,5 +49,5 @@ class ImageUtil{
 }
 
 let imageUtil = new ImageUtil()
-imageUtil.getImagesNames();
+//imageUtil.getImagesNames();
 export default imageUtil;
