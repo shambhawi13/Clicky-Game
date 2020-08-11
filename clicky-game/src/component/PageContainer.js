@@ -7,16 +7,27 @@ import imageUtil from '../Util/ImageRandomizer';
 class PageContainer extends Component{
     state={
       score: 0,
+      topScore: 0,
       images: []
     };
 
     setScore = (value)=>{
-      if(value == "increment"){
-        let newValue = this.state.score + 1;
-        this.setState({score:newValue});
-      }
-      else{
-        this.setState({score:0});
+      //call method and set flag corresponding to image as true
+      console.log(value);
+      for(let i of imageUtil.imageClickedTracker){
+        if(Object.keys(i)[0] === value){
+          console.log("yes equal ",value);
+          if(!i[value]){
+            i[value] = true;
+            let newScore = this.state.score + 1;
+            this.setState({score: newScore});
+          }
+          else{
+            let calcTopScore = Math.max(this.state.topScore,this.state.score);
+            this.setState({topScore: calcTopScore});
+            this.setState({score: 0})
+          }
+        }
       }
     }
 
@@ -32,7 +43,7 @@ class PageContainer extends Component{
     render() {
         return (
           <div>
-            <Header></Header>
+            <Header score={this.state.score} topScore={this.state.topScore}></Header>
             <Jumbotron></Jumbotron>
             <CardsContainer setScore={this.setScore} images={this.state.images} shuffleImages={this.shuffleImages}></CardsContainer>          
           </div>

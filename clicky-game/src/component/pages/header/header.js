@@ -1,11 +1,11 @@
 import React from "react";
 
-function Header() {
+function Header(props) {
     return (
         <nav className="navbar navbar-light bg-info">
             <span className="navbar-brand mb-0 h1">Clicky Game</span>
             <span>Click an image to begin!</span>
-            <span>Score:0 | Top Score:0</span>
+    <span>Score:{props.score} | Top Score:{props.topScore}</span>
         </nav>
     )
 }

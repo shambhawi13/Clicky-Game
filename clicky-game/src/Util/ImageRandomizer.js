@@ -3,22 +3,28 @@ class ImageUtil{
     imageClickedTracker = [];
     getImage() {
         this.listOfImages = this.importAll(require.context('../Assets/', false, /\.(png|jpe?g|svg)$/));
-        for(let i of this.listOfImages){
-            let imageTrack = {};
-            imageTrack[i] = false;
-            //console.log(i);
-            this.imageClickedTracker.push(imageTrack[i]);
-        }
         //console.log(this.imageClickedTracker);
         return this.listOfImages;
     }
+    getImagesNames = () => {
+        const r = require.context('../Assets/', false, /\.(png|jpe?g|svg)$/);      
+        // return an array list of filenames (with extension)
+        const importAll = (r) => r.keys().map(file => file.match(/[^\/]+$/)[0]);
+        console.log(importAll(r));
+        for(let i of importAll(r)){
+            let imageTrack = {};
+            imageTrack[i] = false;
+            this.imageClickedTracker.push(imageTrack);
+        }
+        console.log(this.imageClickedTracker);
+        return importAll(r);
+      };
     ImageRandomizer() {
         let randomChoice = Math.floor(Math.random() * this.listOfImages.length);
         return randomChoice;
     }
     importAll(r) {
-        console.log(r);
-        return r.keys().map(r);
+        return r.keys().map(file => file.match(/[^\/]+$/)[0]);
     }
     shuffleImages() {
         let i = this.listOfImages.length - 1;
@@ -35,4 +41,5 @@ class ImageUtil{
 }
 
 let imageUtil = new ImageUtil()
+imageUtil.getImagesNames();
 export default imageUtil;

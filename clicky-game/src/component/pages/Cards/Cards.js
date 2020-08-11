@@ -8,22 +8,17 @@ function handleClick(indexClicked){
 }
 
 function Cards(props) {
-    handleClick =(indexClicked)=>{
-        console.log("Image clicked: ",indexClicked);
-        let randomImage = imageUtil.ImageRandomizer();
-        if(randomImage === indexClicked){
-            props.setScore("increment");
-        }
-        else{
-            props.setScore("reset");
-        }
+    handleClick = (imageClicked)=>{
+        console.log("Image clicked: ",imageClicked);
+        props.setScore(imageClicked)
         props.shuffleImages();
     }
     
     return (
-        <div className="card" onClick={()=>handleClick(props.name)}>
+        <div className="card" onClick={()=>handleClick(props.image)}>
             <div className="img-container">
-                <img alt={props.name} src={props.image} />
+                <img alt={props.name} src={'../Assets/'+props.image} />
+                {/* src={props.image} */}
             </div>
         </div>
     )
