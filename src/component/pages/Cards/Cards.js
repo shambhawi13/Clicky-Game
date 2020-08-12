@@ -17,8 +17,9 @@ function Cards(props) {
     return (
         <div className="card" onClick={()=>handleClick(props.image)}>
             <div className="img-container">
-                <img alt={props.name} src={'../Assets/'+props.image} />
+                <img alt={props.name} src={process.env.PUBLIC_URL+"/Assets/"+props.image} />
                 {/* src={props.image} */}
+                {/* src={'../Assets/'+props.image} */}
             </div>
         </div>
     )
